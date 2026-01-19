@@ -1,0 +1,58 @@
+# LightAV Configuration
+# Configuration file for LightAV antivirus application
+
+# Configuration schema version - used for migrations
+config_version: 1
+
+# Scan Paths Configuration
+scan_paths:
+  # List of directories to monitor for file changes
+  watched_directories: []
+  # List of directories to exclude from scanning
+  excluded_directories: []
+  # File extensions to scan
+  file_extensions:
+    - ".exe"
+    - ".dll"
+    - ".msi"
+    - ".bat"
+    - ".cmd"
+    - ".ps1"
+
+# Resource Limits Configuration
+resource_limits:
+  # Maximum CPU usage percentage (0-100)
+  max_cpu_percent: 50
+  # Maximum memory usage in MB
+  max_memory_mb: 512
+  # Maximum concurrent scan threads
+  max_scan_threads: 4
+  # Scan throttle delay in milliseconds
+  scan_throttle_ms: 100
+
+# Logging Configuration
+logging:
+  # Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  level: INFO
+  # Log file path (relative to project root)
+  log_file: logs/lightav.log
+  # Maximum log file size in MB before rotation
+  max_file_size_mb: 10
+  # Number of backup log files to keep
+  backup_count: 5
+
+# Model Configuration
+model:
+  # Path to ONNX model file
+  model_path: ""
+  # Confidence threshold for malware detection (0.0-1.0)
+  confidence_threshold: 0.85
+
+# Hash Cache Configuration
+hash_cache:
+  # Enable hash caching for scanned files
+  enabled: true
+  # Maximum cache entries
+  max_entries: 10000
+  # Cache expiration in hours
+  expiration_hours: 24
