@@ -1,0 +1,58 @@
+CNN Model Evaluation Results
+============================
+Date: 2026-01-20 22:50:42
+
+Dataset: Balanced dataset (X_balanced.npy, y_balanced.npy)
+Total Samples: 10,024 (5,012 Benign + 5,012 Malicious)
+
+Overall Metrics:
+----------------
+Accuracy: 0.8710 (87.10%)
+
+Per-Class Metrics:
+------------------
+Class: Benign
+  Precision: 0.97
+  Recall: 0.77
+  F1-Score: 0.86
+  Support: 5012
+
+Class: Malicious
+  Precision: 0.81
+  Recall: 0.97
+  F1-Score: 0.88
+  Support: 5012
+
+Weighted Average:
+  Precision: 0.89
+  Recall: 0.87
+  F1-Score: 0.87
+
+Confusion Matrix:
+-----------------
+                Predicted
+              Benign  Malicious
+Actual Benign   3856     1156
+      Malicious  137     4875
+
+True Negatives: 3856
+False Positives: 1156
+False Negatives: 137
+True Positives: 4875
+
+Model Architecture:
+-------------------
+- Conv1D(32, kernel=3, activation='relu')
+- MaxPooling1D(2)
+- Conv1D(64, kernel=3, activation='relu')
+- Flatten
+- Dense(64, activation='relu')
+- Dense(1, activation='sigmoid')
+
+Training Configuration:
+-----------------------
+- Epochs: 10
+- Batch Size: 32
+- Optimizer: Adam
+- Loss: Binary Crossentropy
+- Train/Test Split: 80/20

@@ -1,0 +1,51 @@
+LightAV Performance Metrics
+===========================
+Date: 2026-01-20 22:55:30
+
+System Information:
+-------------------
+OS: Windows
+Python Version: 3.10
+
+Scan Performance:
+-----------------
+Files Scanned: 2
+Total Scan Time: 0.0289 seconds
+Average Scan Time per File: 0.0144 seconds (~14.4 ms)
+
+Resource Usage:
+---------------
+CPU Usage: 9.6%
+Memory Usage: 28.90 MB
+
+Backend Model:
+--------------
+Primary Model: LightGBM (ONNX format)
+Model File: lightgbm_static.onnx
+Model Size: ~1.17 MB
+
+Additional Models Available:
+----------------------------
+1. CNN Model (cnn_model.h5)
+   - Accuracy: 87.10%
+   - Location: ml_models/cnn/
+
+2. LSTM Model (lstm_model.h5)
+   - Accuracy: 95.51%
+   - Location: ml_models/lstm/
+
+Scanning Features:
+------------------
+- Static PE file analysis
+- Feature extraction from PE headers
+- Real-time threat detection
+- Quarantine capability
+- USB monitoring (background thread)
+- Email attachment monitoring (background thread)
+
+Performance Notes:
+------------------
+- Lightweight memory footprint (~29 MB)
+- Fast scan times (~14 ms per file)
+- Low CPU overhead for background scanning
+- ONNX runtime enables fast inference

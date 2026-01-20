@@ -314,6 +314,57 @@ LightAV is designed for minimal system impact:
 
 ---
 
+## Machine Learning Models
+
+This project includes CNN and LSTM models implemented for research
+and evaluation purposes. These models are trained on static feature
+datasets and are not used in real-time scanning due to performance
+constraints.
+
+The production engine uses rule-based detection for stability.
+
+### Model Performance
+
+| Model | Accuracy | Precision | Recall | F1-Score |
+|-------|----------|-----------|--------|----------|
+| CNN   | 87.10%   | 0.89      | 0.87   | 0.87     |
+| LSTM  | 95.51%   | 0.96      | 0.96   | 0.96     |
+
+### Model Locations
+
+```
+ml_models/
+├── cnn/
+│   ├── cnn_train.py
+│   ├── cnn_evaluate.py
+│   └── cnn_model.h5
+├── lstm/
+│   ├── lstm_train.py
+│   ├── lstm_evaluate.py
+│   └── lstm_model.h5
+├── data/
+│   └── dataset.csv
+└── utils.py
+```
+
+### Training the Models
+
+```bash
+# Train CNN model
+python ml_models/cnn/cnn_train.py
+
+# Evaluate CNN model
+python ml_models/cnn/cnn_evaluate.py
+
+# Train LSTM model
+python ml_models/lstm/lstm_train.py
+
+# Evaluate LSTM model
+python ml_models/lstm/lstm_evaluate.py
+```
+
+---
+
 ## Future Enhancements
 
 - [ ] Behavioral analysis engine

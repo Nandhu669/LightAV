@@ -1,0 +1,58 @@
+LSTM Model Evaluation Results
+=============================
+Date: 2026-01-20 22:54:30
+
+Dataset: Balanced dataset (X_balanced.npy, y_balanced.npy)
+Total Samples: 10,024 (5,012 Benign + 5,012 Malicious)
+
+Overall Metrics:
+----------------
+Accuracy: 0.9551 (95.51%)
+
+Per-Class Metrics:
+------------------
+Class: Benign
+  Precision: 0.96
+  Recall: 0.95
+  F1-Score: 0.95
+  Support: 5012
+
+Class: Malicious
+  Precision: 0.95
+  Recall: 0.96
+  F1-Score: 0.96
+  Support: 5012
+
+Weighted Average:
+  Precision: 0.96
+  Recall: 0.96
+  F1-Score: 0.96
+
+Confusion Matrix:
+-----------------
+                Predicted
+              Benign  Malicious
+Actual Benign   4774      238
+      Malicious  212     4800
+
+True Negatives: 4774
+False Positives: 238
+False Negatives: 212
+True Positives: 4800
+
+Model Architecture:
+-------------------
+- LSTM(64, input_shape=(features, 1))
+- Dropout(0.2)
+- Dense(32, activation='relu')
+- Dropout(0.2)
+- Dense(1, activation='sigmoid')
+
+Training Configuration:
+-----------------------
+- Epochs: 10
+- Batch Size: 32
+- Optimizer: Adam
+- Loss: Binary Crossentropy
+- Train/Test Split: 80/20
+- Validation Split: 10%
