@@ -76,7 +76,7 @@ Examples:
         main_loop()
     
     elif args.gui:
-        from gui.main_window import main
+        from gui.app import main
         print("[LightAV] Launching GUI...")
         main()
 

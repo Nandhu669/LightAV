@@ -74,11 +74,26 @@ class BackendController(QObject):
         Emits signals to update GUI.
         """
         import time
+        import os
         
         try:
             # Emit scan started
             self.scan_started.emit(filepath)
-            self.log_message.emit(f"Scanning file: {filepath}", "INFO")
+            
+            # Check file extension
+            _, ext = os.path.splitext(filepath)
+            ext_lower = ext.lower()
+            scannable_exts = {'.exe', '.dll', '.sys', '.scr', '.msi', '.bat', '.cmd', '.ps1', '.vbs', '.js'}
+            
+            if ext_lower not in scannable_exts:
+                self.log_message.emit(f"Skipped (non-executable): {os.path.basename(filepath)}", "INFO")
+                # Emit completion with CLEAN result for skipped files
+                self.scan_completed.emit(filepath, "CLEAN", 0)
+                if callback:
+                    callback(filepath, "CLEAN")
+                return
+            
+            self.log_message.emit(f"Scanning file: {os.path.basename(filepath)}", "INFO")
             
             start_time = time.time()
             
@@ -90,10 +105,10 @@ class BackendController(QObject):
             # Convert verdict to string
             if verdict == Verdict.MALICIOUS:
                 result = "MALICIOUS"
-                self.log_message.emit(f"THREAT DETECTED: {filepath}", "THREAT")
+                self.log_message.emit(f"THREAT DETECTED: {os.path.basename(filepath)}", "THREAT")
             else:
                 result = "CLEAN"
-                self.log_message.emit(f"File is clean: {filepath}", "INFO")
+                self.log_message.emit(f"File is clean: {os.path.basename(filepath)}", "INFO")
             
             # Emit completion signal
             self.scan_completed.emit(filepath, result, elapsed_ms)
@@ -105,7 +120,7 @@ class BackendController(QObject):
         except Exception as e:
             error_msg = str(e)
             self.scan_error.emit(filepath, error_msg)
-            self.log_message.emit(f"Scan error for {filepath}: {error_msg}", "WARNING")
+            self.log_message.emit(f"Scan error for {os.path.basename(filepath)}: {error_msg}", "WARNING")
     
     def scan_single_file(self, filepath, callback=None):
         """
