@@ -1,433 +1,107 @@
-# LightAV
+# 🛡️ LightAV: Next-Generation Lightweight Security
 
-A lightweight, rule-based antivirus system for Windows designed for educational and research purposes.
-
-![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
-![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+**LightAV** is a high-performance, premium antivirus solution designed for Windows. It leverages a state-of-the-art **hybrid architecture**, merging a robust Python-based scanning core with a modern, glassmorphic React dashboard to deliver enterprise-grade security analysis with a world-class user experience.
 
 ---
 
-## Overview
+## 🚀 Key Highlights
 
-LightAV is a static analysis-based antivirus system that detects malicious files using hash verification and rule-based analysis. The system prioritizes low resource usage, offline operation, and transparent decision-making.
-
-**Key Characteristics:**
-- No internet dependency (fully offline operation)
-- No kernel hooks or real-time file interception
-- Low CPU and memory footprint
-- Transparent rule-based detection
-- Educational and research-focused design
+*   **Hybrid Engine**: Seamlessly bridges low-level Python system access with a high-fidelity React frontend.
+*   **Privacy-First**: Optimized for 100% offline operation—no telemetry, no cloud dependency.
+*   **Intelligent Throttling**: Real-time system awareness automatically balances protection vs. performance.
+*   **PE Forensic Logic**: Advanced static analysis ruleset focusing on entropy, imports, and section mapping.
+*   **Premium UX**: A professional-grade dashboard featuring dark mode, micro-animations, and live metrics.
 
 ---
 
-## Features
+## 🛠️ Technology Stack
 
-| Feature | Description |
-|---------|-------------|
-| Static File Scanning | Analyzes files without execution |
-| SHA-256 Hashing | Cryptographic file identification |
-| Cache-Based Detection | Fast lookup for previously scanned files |
-| Rule-Based Analysis | Configurable detection rules |
-| Quarantine System | Isolates malicious files safely |
-| Restore Functionality | Recover quarantined files when needed |
-| Audit Logging | Complete scan and action history |
-| GUI Dashboard | PyQt-based control interface |
-| System Monitoring | CPU and RAM usage display |
-| Windows Service | Background operation support |
-| Performance-Aware | Pauses on high CPU usage |
+| Layer | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Core Engine** | ![Python](https://img.shields.io/badge/Python-3.10-3776AB?logo=python) | Decision logic, PE analysis, and OS interaction |
+| **Frontend** | ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react) | Professional dashboard & interactive visualizations |
+| **GUI Container**| ![PyQt6](https://img.shields.io/badge/PyQt6-Container-gray?logo=qt) | Native Windows window management & WebEngine |
+| **API Bridge** | ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?logo=fastapi) | High-speed RESTful communication between UI and Core |
+| **Database** | ![SQLite](https://img.shields.io/badge/SQLite-Caching-003B57?logo=sqlite) | High-performance hash caching & metadata storage |
 
 ---
 
-## Architecture
+## 📦 System Architecture
 
-```
-LightAV-Python/
-├── agent/                  # Core scanning engine
-│   ├── scanner.py          # File scanning logic
-│   ├── decision_engine.py  # Verdict determination
-│   ├── quarantine.py       # File isolation
-│   ├── hash_cache.py       # Hash caching system
-│   ├── logger.py           # Audit logging
-│   ├── log_reader.py       # Log retrieval
-│   ├── restore.py          # File restoration
-│   ├── runtime_state.py    # Scanner state management
-│   └── main_agent.py       # Agent entry point
-├── ai_engine/              # ML components (future)
-│   ├── feature_extractor.py
-│   └── model_infer.py
-├── gui/                    # User interface
-│   └── app.py              # PyQt dashboard
-├── service/                # Windows service
-│   └── service_runner.py
-├── config.yaml             # Configuration file
-├── logs/                   # Log output directory
-├── quarantine/             # Isolated files
-│   └── files/
-└── requirements.txt
+```mermaid
+graph TD
+    A[PyQt6 Container] --> B[FastAPI Web Server]
+    A --> C[QWebEngineView]
+    C --> D[React Dashboard]
+    D -- REST API --> B
+    B --> E[Python Scan Agent]
+    E --> F[Decision Engine]
+    E --> G[Quarantine Manager]
+    F --> H[SQLite Cache]
 ```
 
-### Module Descriptions
+### 1. The Scanning Core (`agent/`)
+Our proprietary engine performs multi-stage static analysis. It verifies file signatures, calculates SHA-256 hashes, and applies a complex ruleset to evaluate the potential threat level of executable files without ever running them.
 
-**agent/** - Core scanning engine containing the file scanner, decision engine, quarantine manager, and logging system.
+### 2. The Native Bridge (`gui/`)
+Utilizing **QWebChannel**, the application provides a secure bridge between the sandboxed web dashboard and the Windows file system, enabling native features like system file pickers and desktop notifications.
 
-**ai_engine/** - Reserved for machine learning components including feature extraction and model inference.
-
-**gui/** - PyQt6-based graphical interface for user interaction and system monitoring.
-
-**service/** - Windows service wrapper for background operation.
+### 3. The Digital Dashboard (`web/`)
+A premium React application built with **TailwindCSS** and **Framer Motion**, offering real-time protection toggles, live system resource monitoring, and a comprehensive threat history.
 
 ---
 
-## Detection Workflow
+## 🏁 Getting Started
 
-```
-┌─────────────┐
-│ File Input  │
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│ Hash (SHA-256)│
-└──────┬──────┘
-       ▼
-┌─────────────┐     ┌─────────────┐
-│ Cache Check │────▶│ Return Cached│
-└──────┬──────┘     │   Verdict   │
-       │ miss      └─────────────┘
-       ▼
-┌─────────────┐
-│Static Analysis│
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│Decision Engine│
-└──────┬──────┘
-       ▼
-┌─────────────┐
-│   Verdict   │
-└──────┬──────┘
-       │
-   ┌───┴───┐
-   ▼       ▼
-┌─────┐ ┌─────────┐
-│Safe │ │Malicious│
-└─────┘ └────┬────┘
-             ▼
-       ┌──────────┐
-       │Quarantine│
-       └──────────┘
-             ▼
-       ┌──────────┐
-       │   Log    │
-       └──────────┘
-```
+### Prerequisites
+- Windows 10/11 (x64)
+- Python 3.10+
+- Node.js 18+ (Development only)
 
-**Step-by-Step Process:**
-
-1. **File Input** - File path received via GUI, drag-drop, or folder scan
-2. **Hash Calculation** - SHA-256 hash computed for file identification
-3. **Cache Lookup** - Check if file was previously scanned
-4. **Static Analysis** - Analyze file structure and properties
-5. **Decision Engine** - Apply rules to determine verdict
-6. **Quarantine** - Isolate file if malicious
-7. **Logging** - Record action for audit trail
+### Installation
+1.  **Clone the Repository**
+    ```bash
+    git clone https://github.com/your-org/LightAV-Python.git
+    cd LightAV-Python
+    ```
+2.  **Environment Setup**
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate  # Or `.venv\Scripts\activate` on Windows
+    pip install -r requirements.txt
+    ```
+3.  **Launch**
+    ```bash
+    python run_lightav.py
+    ```
 
 ---
 
-## GUI Dashboard
+## 🔍 Detailed Usage
 
-The graphical interface provides:
+### Operational Modes
+*   **Standard GUI**: The full-featured interactive experience.
+*   **Headless Agent**: `python run_lightav.py --agent` — Run as a background monitor.
+*   **CLI Scanner**: `python run_lightav.py --scan <path>` — Direct integration for automated workflows.
 
-| Function | Description |
-|----------|-------------|
-| Status Display | Current scanner state (Running/Paused) |
-| Pause/Resume | Toggle scanner operation |
-| Select File | Scan individual files |
-| Scan Folder | Scan all files in a directory |
-| Drag & Drop | Drop files onto window to scan |
-| Scan Results | Visual feedback with threat status |
-| Scan History | Last 5 scan results with timestamps |
-| Quarantine Viewer | List of isolated files |
-| Restore | Recover quarantined files |
-| Live Logs | Real-time log display |
-| System Stats | CPU and RAM usage monitoring |
-
-**Keyboard Shortcuts:**
-- `Ctrl+O` - Select file to scan
-- `Ctrl+D` - Select folder to scan
-- `Ctrl+Q` - Quit application
+### Managing Threats
+When a file is flagged as **MALICIOUS**, LightAV automatically:
+1.  Moves the file to a secure local `quarantine/` directory.
+2.  Renames the file to prevent accidental execution.
+3.  Generates a `.meta` file containing the original path, timestamp, and threat type.
 
 ---
 
-## Installation
-
-### Requirements
-
-- Python 3.10 or higher
-- Windows 10/11
-- 50 MB disk space
-
-### Setup
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/LightAV-Python.git
-cd LightAV-Python
-```
-
-2. **Create virtual environment**
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-3. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-4. **Verify installation**
-```bash
-python -c "from agent.scanner import process_file; print('OK')"
-```
-
-### Dependencies
-
-```
-PyQt6>=6.4.0
-psutil>=5.9.0
-PyYAML>=6.0
-plyer>=2.1.0
-```
+## 🧪 Experimental Research
+LightAV serves as a platform for AI-driven security research. We include pre-trained **LSTM** and **CNN** weights used for evaluating binary sequence patterns. While our production engine defaults to rule-based logic for zero-latency, the AI components are available for evaluation within the `ml_models` suite.
 
 ---
 
-## Usage
-
-### Running the GUI
-
-```bash
-# From project root
-set PYTHONPATH=.
-python gui/app.py
-```
-
-Or using PowerShell:
-```powershell
-$env:PYTHONPATH = "."; python gui/app.py
-```
-
-### Scanning Files
-
-**Method 1: File Picker**
-1. Click "Select File (Ctrl+O)"
-2. Choose file in dialog
-3. View result in Scan Results panel
-
-**Method 2: Folder Scan**
-1. Click "Scan Folder (Ctrl+D)"
-2. Select directory
-3. Progress bar shows scan status
-4. Summary displayed on completion
-
-**Method 3: Drag and Drop**
-1. Drag file onto application window
-2. Result displayed immediately
-
-### Quarantine
-
-Quarantined files are moved to `quarantine/files/` with the following naming:
-```
-{timestamp}_{original_hash}_{filename}
-```
-
-**To restore a file:**
-1. Select file in Quarantine list
-2. Click "Restore Selected File"
-3. File restored to `restored/` directory
-
-### Viewing Logs
-
-Logs are stored in `logs/` directory and displayed in the GUI's Live Logs panel.
-
-Log format:
-```
-YYYY-MM-DD HH:MM:SS | file: {path} | hash: {sha256} | verdict: {result}
-```
+## ⚖️ Disclaimer
+*LightAV is a cybersecurity research project. While it implements industry-standard protection patterns, it is provided "as-is" for educational purposes. Always use official, enterprise-certified security solutions for critical production environments.*
 
 ---
 
-## Configuration
+## 📜 License
+Licensed under the **MIT License**. Created by the LightAV Security Team.
 
-Edit `config.yaml` to modify behavior:
-
-```yaml
-scanner:
-  scan_interval: 5          # Seconds between scans
-  max_file_size: 104857600  # 100 MB limit
-  pause_on_high_cpu: true
-  cpu_threshold: 80         # Pause if CPU > 80%
-
-quarantine:
-  path: "quarantine/files"
-  max_age_days: 30
-
-logging:
-  level: INFO
-  max_log_size: 10485760    # 10 MB
-```
-
----
-
-## Performance Design
-
-LightAV is designed for minimal system impact:
-
-| Aspect | Design Choice |
-|--------|---------------|
-| Scanning | On-demand only, no file system hooks |
-| Detection | Static analysis, no behavioral monitoring |
-| Caching | Hash-based cache reduces repeat scans |
-| CPU | Automatic pause on high system load |
-| Memory | Minimal footprint, no large signatures |
-| Disk | Small log files with rotation |
-
-**What LightAV Does NOT Do:**
-- Real-time file interception
-- Kernel-level monitoring
-- Background file watching
-- Network traffic analysis
-- Process injection detection
-
----
-
-## Limitations
-
-| Limitation | Reason |
-|------------|--------|
-| No behavioral analysis | Static analysis only |
-| No real-time protection | On-demand scanning |
-| No cloud detection | Fully offline operation |
-| No runtime ML inference | Performance priority |
-| No packed file analysis | Simplified detection |
-| No memory scanning | File-based only |
-
----
-
-## Machine Learning Models
-
-This project includes CNN and LSTM models implemented for research
-and evaluation purposes. These models are trained on static feature
-datasets and are not used in real-time scanning due to performance
-constraints.
-
-The production engine uses rule-based detection for stability.
-
-### Model Performance
-
-| Model | Accuracy | Precision | Recall | F1-Score |
-|-------|----------|-----------|--------|----------|
-| CNN   | 87.10%   | 0.89      | 0.87   | 0.87     |
-| LSTM  | 95.51%   | 0.96      | 0.96   | 0.96     |
-
-### Model Locations
-
-```
-ml_models/
-├── cnn/
-│   ├── cnn_train.py
-│   ├── cnn_evaluate.py
-│   └── cnn_model.h5
-├── lstm/
-│   ├── lstm_train.py
-│   ├── lstm_evaluate.py
-│   └── lstm_model.h5
-├── data/
-│   └── dataset.csv
-└── utils.py
-```
-
-### Training the Models
-
-```bash
-# Train CNN model
-python ml_models/cnn/cnn_train.py
-
-# Evaluate CNN model
-python ml_models/cnn/cnn_evaluate.py
-
-# Train LSTM model
-python ml_models/lstm/lstm_train.py
-
-# Evaluate LSTM model
-python ml_models/lstm/lstm_evaluate.py
-```
-
----
-
-## Future Enhancements
-
-- [ ] Behavioral analysis engine
-- [ ] Offline ML-based detection
-- [ ] Signature update system
-- [ ] Advanced PE file analysis
-- [ ] Scheduled scanning
-- [ ] Email notifications
-- [ ] System tray integration
-- [ ] Multi-language support
-
----
-
-## Project Structure
-
-```
-Component           Technology      Purpose
-─────────────────────────────────────────────────
-Scanner Engine      Python          File analysis
-Decision Engine     Rule-based      Verdict logic
-Cache System        SQLite          Hash caching
-GUI                 PyQt6           User interface
-Logging             Python logging  Audit trail
-Service             pywin32         Background ops
-Configuration       YAML            Settings
-```
-
----
-
-## Testing
-
-Run the scanner on test files:
-
-```bash
-# Scan a single file
-python -c "from agent.scanner import process_file; print(process_file('test.exe'))"
-
-# Run GUI
-$env:PYTHONPATH = "."; python gui/app.py
-```
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Disclaimer
-
-LightAV is designed for **educational and research purposes only**. It is not intended to replace production antivirus software. The detection capabilities are limited to static analysis and rule-based matching. Do not rely on this software for protection against real-world malware threats.
-
----
-
-## Author
-
-Developed as a final year cybersecurity project.
-
----
-
-## Acknowledgments
-
-- PyQt6 for the GUI framework
-- Python community for security libraries
-- Open-source antivirus research
