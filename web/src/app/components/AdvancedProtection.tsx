@@ -66,7 +66,7 @@ export function AdvancedProtection({ protectionStatus, onToggleProtection }: Adv
     },
     {
       id: "privacy",
-      title: "Privacy Guard",
+      title: "Privacy Guard (Coming Soon)",
       description: "Protects your personal data and prevents tracking",
       icon: Eye,
       enabled: false,
@@ -82,8 +82,8 @@ export function AdvancedProtection({ protectionStatus, onToggleProtection }: Adv
     },
     {
       id: "email",
-      title: "Email Protection",
-      description: "Scans email attachments for threats",
+      title: "Email Protection (Coming Soon)",
+      description: "Detects threats in attachments and links",
       icon: Mail,
       enabled: false,
     },
@@ -131,8 +131,8 @@ export function AdvancedProtection({ protectionStatus, onToggleProtection }: Adv
               <div className="flex items-center justify-between py-5 group">
                 <div className="flex items-start gap-4 flex-1">
                   <div className={`p-3 rounded-xl transition-all ${feature.enabled
-                      ? 'bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/30'
-                      : 'bg-gray-100'
+                    ? 'bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/30'
+                    : 'bg-gray-100'
                     }`}>
                     <Icon className={`w-6 h-6 ${feature.enabled ? 'text-white' : 'text-gray-500'}`} />
                   </div>

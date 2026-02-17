@@ -82,24 +82,60 @@ const scanOptions: ScanOption[] = [
 
 interface PremiumScanOptionsProps {
   onScan: (path: string) => void;
+  onFolderScan: (path: string) => void;
+  onFullScan: () => void;
+  onNetworkScan: () => void;
+  onVulnerabilityScan: () => void;
+  pybridge?: any;
 }
 
-export function PremiumScanOptions({ onScan }: PremiumScanOptionsProps) {
+export function PremiumScanOptions({
+  onScan,
+  onFolderScan,
+  onFullScan,
+  onNetworkScan,
+  onVulnerabilityScan,
+  pybridge
+}: PremiumScanOptionsProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const handleScan = (id: string) => {
-    let path = "";
     if (id === "quick") {
-      path = prompt("Enter file path for Quick Scan:", "C:\\Windows\\System32\\drivers\\etc\\hosts") || "";
+      if (pybridge) {
+        pybridge.select_file((selectedPath: string) => {
+          if (selectedPath) onScan(selectedPath);
+        });
+        return;
+      }
+      const path = prompt("Enter file path for Quick Scan:", "C:\\Windows\\System32\\drivers\\etc\\hosts") || "";
+      if (path) onScan(path);
+    } else if (id === "full") {
+      onFullScan();
     } else if (id === "custom") {
-      path = prompt("Enter file or folder path to scan:") || "";
+      if (pybridge) {
+        pybridge.select_folder((selectedPath: string) => {
+          if (selectedPath) onFolderScan(selectedPath);
+        });
+        return;
+      }
+      const path = prompt("Enter folder path to scan:") || "";
+      if (path) onFolderScan(path);
+    } else if (id === "external") {
+      if (pybridge) {
+        pybridge.select_folder((selectedPath: string) => {
+          if (selectedPath) onFolderScan(selectedPath);
+        });
+        return;
+      }
+      const path = prompt("Enter external drive path to scan:") || "";
+      if (path) onFolderScan(path);
+    } else if (id === "network") {
+      onNetworkScan();
+    } else if (id === "vulnerability") {
+      onVulnerabilityScan();
     } else {
       alert("This scan type is not yet implemented in the backend.");
       return;
-    }
-
-    if (path) {
-      onScan(path);
     }
   };
 
@@ -131,8 +167,8 @@ export function PremiumScanOptions({ onScan }: PremiumScanOptionsProps) {
             >
               <Card
                 className={`p-6 cursor-pointer border-2 transition-all duration-300 relative overflow-hidden ${isHovered
-                    ? 'shadow-xl scale-105 border-blue-400'
-                    : 'hover:shadow-lg border-gray-200'
+                  ? 'shadow-xl scale-105 border-blue-400'
+                  : 'hover:shadow-lg border-gray-200'
                   }`}
                 onClick={() => handleScan(option.id)}
               >
@@ -158,10 +194,14 @@ export function PremiumScanOptions({ onScan }: PremiumScanOptionsProps) {
 
                 <Button
                   className={`w-full transition-all ${option.recommended
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
-                      : ''
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
+                    : ''
                     }`}
                   variant={option.recommended ? "default" : "outline"}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleScan(option.id);
+                  }}
                 >
                   Start Scan
                 </Button>

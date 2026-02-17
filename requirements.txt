@@ -25,3 +25,19 @@ PyQt6-WebEngine==6.10.0
 # --- Configuration ---
 PyYAML==6.0.1
 
+# --- Production Dependencies ---
+yara-python==4.5.1
+pybloom-live==4.0.0
+tqdm==4.66.1
+requests==2.31.0
+
+# --- Phase 2: Resource Management & Service ---
+# Windows service support (optional - requires Windows)
+pywin32==306; platform_system=="Windows"
+winshell==0.6; platform_system=="Windows"
+
+# Additional utilities
+click==8.1.7
+colorama==0.4.6
+
+
