@@ -49,6 +49,9 @@ app = FastAPI()
 class ScanRequest(BaseModel):
     path: str
 
+class RestoreFileRequest(BaseModel):
+    quarantine_path: str
+
 # API Endpoints
 @app.get("/api/status")
 def get_status():
@@ -373,6 +376,41 @@ def restore_all():
                     pass
     
     return {"restored": restored_count}
+
+@app.post("/api/restore_file")
+def restore_single_file(request: RestoreFileRequest):
+    from agent.restore import restore_file
+    import json
+
+    quarantine_path = Path(request.quarantine_path)
+    if not quarantine_path.exists():
+        return {"success": False, "error": "Quarantined file not found"}
+
+    # Try to get original path from metadata
+    meta_path = Path(str(quarantine_path) + '.meta')
+    original_path = None
+    if meta_path.exists():
+        try:
+            with open(meta_path, 'r') as f:
+                metadata = json.load(f)
+            original_path = metadata.get('original_path')
+        except:
+            pass
+
+    # Fall back to Desktop if original path is unavailable
+    if not original_path:
+        parts = quarantine_path.name.split('_', 2)
+        original_name = parts[2] if len(parts) >= 3 else quarantine_path.name
+        original_path = str(Path.home() / "Desktop" / original_name)
+
+    try:
+        restore_file(str(quarantine_path), original_path)
+        # Clean up metadata file
+        if meta_path.exists():
+            meta_path.unlink()
+        return {"success": True, "restored_to": original_path}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
 
 @app.post("/api/delete_all")
 def delete_all():

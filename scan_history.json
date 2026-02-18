@@ -1,5 +1,15 @@
 [
   {
+    "id": "4",
+    "type": "Quick Scan",
+    "date": "2026-02-18 20:24:08",
+    "status": "Completed",
+    "results": {
+      "path": "C:/Users/nandh/AppData/Local/OpenCode/OpenCode.exe",
+      "verdict": "MALICIOUS"
+    }
+  },
+  {
     "id": "3",
     "type": "Full System Scan",
     "date": "2026-02-17 11:02:09",

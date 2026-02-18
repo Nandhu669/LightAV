@@ -343,6 +343,24 @@ export default function App() {
         }
     };
 
+    const restoreFile = async (quarantinePath: string) => {
+        try {
+            const res = await fetch('/api/restore_file', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ quarantine_path: quarantinePath })
+            });
+            const data = await res.json();
+            if (data.success) {
+                fetchQuarantine();
+            } else {
+                console.error('Restore failed:', data.error);
+            }
+        } catch (error) {
+            console.error('Failed to restore file:', error);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30">
             {/* Sidebar */}
@@ -419,6 +437,7 @@ export default function App() {
                                             fetchQuarantine();
                                             fetchScanHistory();
                                         }}
+                                        onRestoreFile={restoreFile}
                                     />
                                 </div>
                             </div>
@@ -464,6 +483,7 @@ export default function App() {
                                     fetchQuarantine();
                                     fetchScanHistory();
                                 }}
+                                onRestoreFile={restoreFile}
                             />
                         </div>
                     )}
