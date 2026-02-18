@@ -10,9 +10,10 @@ interface AdvancedSecurityDashboardProps {
     cpu: number;
     ram: number;
   };
+  quarantineCount: number;
 }
 
-export function AdvancedSecurityDashboard({ protectionStatus, systemStats }: AdvancedSecurityDashboardProps) {
+export function AdvancedSecurityDashboard({ protectionStatus, systemStats, quarantineCount }: AdvancedSecurityDashboardProps) {
   const protectionLevel = protectionStatus ? 100 : 0;
   const bgGradient = protectionStatus
     ? "from-green-600 to-emerald-600"
@@ -160,8 +161,8 @@ export function AdvancedSecurityDashboard({ protectionStatus, systemStats }: Adv
               </Badge>
             </div>
             <h4 className="font-semibold text-gray-900 mb-1">Quarantined Items</h4>
-            <p className="text-2xl font-bold text-amber-600 mb-1">-</p>
-            <p className="text-sm text-gray-600">Threats isolated safely</p>
+            <p className="text-2xl font-bold text-amber-600 mb-1">{quarantineCount}</p>
+            <p className="text-sm text-gray-600">{quarantineCount > 0 ? 'Review isolated threats' : 'Your system is clean'}</p>
           </Card>
         </motion.div>
 

@@ -1,0 +1,31 @@
+[
+  {
+    "id": "3",
+    "type": "Full System Scan",
+    "date": "2026-02-17 11:02:09",
+    "status": "Halted",
+    "results": {
+      "threats_found": 0,
+      "message": "Scan halted due to high CPU usage (64.9%)."
+    }
+  },
+  {
+    "id": "2",
+    "type": "Network Scan",
+    "date": "2026-02-17 10:45:52",
+    "status": "Completed",
+    "results": {
+      "connections_found": 95
+    }
+  },
+  {
+    "id": "1",
+    "type": "Vulnerability Scan",
+    "date": "2026-02-17 10:45:34",
+    "status": "Completed",
+    "results": {
+      "vulnerabilities_found": 0,
+      "security_score": 100
+    }
+  }
+]
