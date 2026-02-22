@@ -17,6 +17,7 @@ from production.testing.whitelist import WhitelistDB
 # Import existing modules
 from agent.decision_types import Verdict
 from ai_engine.feature_extractor import extract_features
+from production.ai_engine.production_extractor import extract_production_features
 
 
 @dataclass
@@ -105,9 +106,21 @@ class ProductionDecisionEngine:
         # Check for existing LightAV model
         existing_model_paths = [
             "ai_engine/lightgbm_static.onnx",
+            "production/ai_engine/models/lightgbm_static.onnx",
             "production/ai_engine/models/lightgbm_custom_v1.onnx",
             "ml_models/lightgbm_static.onnx"
         ]
+        
+        # Load scaler
+        self.scaler = None
+        scaler_path = "production/ai_engine/models/scaler.pkl"
+        if Path(scaler_path).exists():
+            import joblib
+            try:
+                self.scaler = joblib.load(scaler_path)
+                print(f"[DecisionEngine] Loaded feature scaler: {scaler_path}")
+            except Exception as e:
+                print(f"[DecisionEngine] Failed to load scaler: {e}")
         
         for model_path in existing_model_paths:
             if Path(model_path).exists():
@@ -253,26 +266,28 @@ class ProductionDecisionEngine:
     
     def _run_ml_model(self, file_path: str, features: np.ndarray) -> float:
         """
-        Run ML model prediction.
-        
-        Args:
-            file_path: Path to file
-            features: Feature vector
-            
-        Returns:
-            Confidence score (0.0 to 1.0)
+        Run ML model prediction using 77 production features and scaler.
         """
         if not self.ml_available:
             return 0.0
         
         try:
-            # Prepare features for model
-            # Model expects 10 features from LightAV
-            if len(features) >= 10:
-                model_input = features[:10].reshape(1, -1).astype(np.float32)
+            # Extract full 77 production features
+            prod_features = extract_production_features(file_path)
+            if prod_features is not None:
+                # Prepare features
+                feat_array = prod_features.reshape(1, -1)
+                
+                # Apply scaler if available
+                if self.scaler:
+                    feat_array = self.scaler.transform(feat_array)
+                
+                # Model inference
+                model_input = feat_array.astype(np.float32)
                 prediction = self.ml_model.predict(model_input)
-                # Return probability of malware (class 1)
-                return float(prediction[0]) if prediction[0] > 0 else 0.5
+                
+                # Class 1 probability (malware)
+                return float(prediction)
         except Exception as e:
             print(f"[DecisionEngine] ML prediction error: {e}")
         

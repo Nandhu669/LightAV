@@ -1,41 +1,30 @@
 [
   {
-    "id": "4",
-    "type": "Quick Scan",
-    "date": "2026-02-18 20:24:08",
-    "status": "Completed",
-    "results": {
-      "path": "C:/Users/nandh/AppData/Local/OpenCode/OpenCode.exe",
-      "verdict": "MALICIOUS"
-    }
-  },
-  {
-    "id": "3",
-    "type": "Full System Scan",
-    "date": "2026-02-17 11:02:09",
-    "status": "Halted",
-    "results": {
-      "threats_found": 0,
-      "message": "Scan halted due to high CPU usage (64.9%)."
-    }
-  },
-  {
     "id": "2",
-    "type": "Network Scan",
-    "date": "2026-02-17 10:45:52",
+    "type": "Quick Scan",
+    "date": "2026-02-20 10:36:43",
     "status": "Completed",
     "results": {
-      "connections_found": 95
+      "path": "C:/Users/nandh/AppData/Roaming/utorrent/uTorrent.exe",
+      "verdict": "CLEAN"
+    },
+    "resources": {
+      "cpu": 2.766666666666667,
+      "ram": 5.10337701562826
     }
   },
   {
     "id": "1",
-    "type": "Vulnerability Scan",
-    "date": "2026-02-17 10:45:34",
+    "type": "Quick Scan",
+    "date": "2026-02-20 10:20:42",
     "status": "Completed",
     "results": {
-      "vulnerabilities_found": 0,
-      "security_score": 100
+      "path": "C:/Users/nandh/AppData/Local/OpenCode/OpenCode.exe",
+      "verdict": "MALICIOUS"
+    },
+    "resources": {
+      "cpu": 10.6,
+      "ram": 5.861889101946329
     }
   }
 ]

@@ -361,6 +361,20 @@ export default function App() {
         }
     };
 
+    const clearScanHistory = async () => {
+        try {
+            const res = await fetch('/api/clear_scan_history', { method: 'POST' });
+            const data = await res.json();
+            if (data.success) {
+                fetchScanHistory();
+            } else {
+                console.error('Failed to clear history:', data.error);
+            }
+        } catch (error) {
+            console.error('Failed to clear scan history:', error);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30">
             {/* Sidebar */}
@@ -438,6 +452,7 @@ export default function App() {
                                             fetchScanHistory();
                                         }}
                                         onRestoreFile={restoreFile}
+                                        onClearHistory={clearScanHistory}
                                     />
                                 </div>
                             </div>
@@ -484,6 +499,7 @@ export default function App() {
                                     fetchScanHistory();
                                 }}
                                 onRestoreFile={restoreFile}
+                                onClearHistory={clearScanHistory}
                             />
                         </div>
                     )}

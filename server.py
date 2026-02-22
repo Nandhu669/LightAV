@@ -17,10 +17,21 @@ from agent.network_scan import start_network_scan
 from agent.log_reader import read_last_lines
 import json
 from datetime import datetime
+import psutil
 
 SCAN_HISTORY_FILE = Path("scan_history.json")
+current_process = psutil.Process()
+cpu_count = psutil.cpu_count() or 1
+total_ram = psutil.virtual_memory().total
 
-def add_to_history(scan_type, results, status="Completed"):
+def get_process_resources():
+    # Return process-specific resources: CPU % and RAM % (both 0-100 scale)
+    return {
+        "cpu": current_process.cpu_percent() / cpu_count,
+        "ram": (current_process.memory_info().rss / total_ram) * 100
+    }
+
+def add_to_history(scan_type, results, status="Completed", resources=None):
     history = []
     if SCAN_HISTORY_FILE.exists():
         try:
@@ -34,7 +45,8 @@ def add_to_history(scan_type, results, status="Completed"):
         "type": scan_type,
         "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "status": status,
-        "results": results
+        "results": results,
+        "resources": resources
     })
     
     # Keep only last 50 entries
@@ -95,14 +107,19 @@ def get_system_stats():
 def scan_file(request: ScanRequest):
     print(f"[API] Received scan request for: {request.path}")
     try:
+        # Trigger CPU measurement
+        current_process.cpu_percent()
+        
         verdict = process_file(request.path)
+        
+        res = get_process_resources()
         verdict_str = "MALICIOUS" if verdict == Verdict.MALICIOUS else "CLEAN"
         print(f"[API] Scan result for {request.path}: {verdict_str}")
         
         add_to_history("Quick Scan", {
             "path": request.path,
             "verdict": verdict_str
-        })
+        }, resources=res)
 
         return {
             "success": True,
@@ -119,6 +136,12 @@ def scan_folder(request: ScanRequest):
     print(f"[API] Received folder scan request for: {request.path}")
     try:
         results = []
+        peak_cpu = 0
+        peak_ram = 0
+        
+        # Trigger CPU measurement
+        current_process.cpu_percent()
+        
         if not os.path.isdir(request.path):
             return {"success": False, "error": "Not a directory"}
             
@@ -142,6 +165,11 @@ def scan_folder(request: ScanRequest):
                     verdict = process_file(filepath)
                     if verdict == Verdict.MALICIOUS:
                         results.append({"path": filepath, "verdict": "MALICIOUS"})
+                    
+                    # Track peak usage
+                    res = get_process_resources()
+                    peak_cpu = max(peak_cpu, res["cpu"])
+                    peak_ram = max(peak_ram, res["ram"])
                 except:
                     pass
         
@@ -149,6 +177,9 @@ def scan_folder(request: ScanRequest):
             "path": request.path,
             "threats_found": len(results),
             "threats": results
+        }, resources={
+            "cpu": peak_cpu,
+            "ram": peak_ram
         })
 
         return {
@@ -167,10 +198,15 @@ scan_jobs = {}
 def run_background_full_scan(job_id):
     from agent.scanner import EXCLUDED_PATHS
     from agent.scanner import Verdict
-    import psutil
     import time
     
     scan_jobs[job_id]["status"] = "running"
+    peak_cpu = 0
+    peak_ram = 0
+    
+    # Trigger CPU measurement
+    current_process.cpu_percent()
+    
     try:
         results = []
         scanned_paths = []
@@ -204,6 +240,11 @@ def run_background_full_scan(job_id):
                     files_count += 1
                     scan_jobs[job_id]["files_scanned"] = files_count
                     
+                    # Track peak usage
+                    res = get_process_resources()
+                    peak_cpu = max(peak_cpu, res["cpu"])
+                    peak_ram = max(peak_ram, res["ram"])
+                    
                     # Show more informative path (e.g., ParentFolder\filename.ext)
                     rel_path = os.path.relpath(os.path.join(root, file), drive)
                     scan_jobs[job_id]["last_file"] = rel_path
@@ -229,6 +270,8 @@ def run_background_full_scan(job_id):
                     except:
                         pass
         
+        resources = {"cpu": peak_cpu, "ram": peak_ram}
+        
         if scan_jobs[job_id]["status"] == "running":
             scan_jobs[job_id]["status"] = "completed"
             scan_jobs[job_id]["scanned_paths"] = scanned_paths
@@ -238,12 +281,12 @@ def run_background_full_scan(job_id):
                 "drives": scanned_paths,
                 "threats_found": len(results),
                 "threats": results
-            })
+            }, resources=resources)
         elif scan_jobs[job_id]["status"] == "halted":
             add_to_history("Full System Scan", {
                 "threats_found": len(results),
                 "message": scan_jobs[job_id].get("message", "Halted")
-            }, status="Halted")
+            }, status="Halted", resources=resources)
             
     except Exception as e:
         print(f"[API] Error during background scan {job_id}: {e}")
@@ -284,22 +327,28 @@ def get_scan_status(job_id: str):
 @app.post("/api/network_scan")
 def network_scan():
     print("[API] Received network scan request")
+    current_process.cpu_percent()
     result = start_network_scan()
+    res = get_process_resources()
+    
     if result["success"]:
         add_to_history("Network Scan", {
             "connections_found": len(result["connections"])
-        })
+        }, resources=res)
     return result
 
 @app.post("/api/vulnerability_scan")
 def vulnerability_scan():
     print("[API] Received vulnerability scan request")
+    current_process.cpu_percent()
     result = start_vulnerability_scan()
+    res = get_process_resources()
+    
     if result["success"]:
         add_to_history("Vulnerability Scan", {
             "vulnerabilities_found": len(result["vulnerabilities"]),
             "security_score": result["score"]
-        })
+        }, resources=res)
     return result
 
 @app.get("/api/scan_history")
@@ -312,6 +361,16 @@ def get_scan_history():
         except:
             pass
     return {"history": history}
+
+@app.post("/api/clear_scan_history")
+def clear_scan_history():
+    try:
+        if SCAN_HISTORY_FILE.exists():
+            with open(SCAN_HISTORY_FILE, "w") as f:
+                json.dump([], f)
+        return {"success": True}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
 
 @app.get("/api/quarantine")
 def get_quarantine():

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AlertCircle, CheckCircle2, XCircle, Shield, Search, RotateCcw, Loader2 } from "lucide-react";
+import { AlertCircle, CheckCircle2, XCircle, Shield, Search, RotateCcw, Loader2, Activity } from "lucide-react";
 import { Card } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
 import { Button } from "@/app/components/ui/button";
@@ -19,6 +19,7 @@ interface PremiumRecentThreatsProps {
   scanHistory?: any[];
   onRefresh: () => void;
   onRestoreFile: (quarantinePath: string) => Promise<void>;
+  onClearHistory?: () => Promise<void>;
 }
 
 const statusConfig = {
@@ -68,7 +69,7 @@ const severityConfig = {
   },
 };
 
-export function PremiumRecentThreats({ quarantine, scanHistory = [], onRefresh, onRestoreFile }: PremiumRecentThreatsProps) {
+export function PremiumRecentThreats({ quarantine, scanHistory = [], onRefresh, onRestoreFile, onClearHistory }: PremiumRecentThreatsProps) {
   const [restoringId, setRestoringId] = useState<string | null>(null);
 
   const threats = quarantine.map((f, i) => ({
@@ -167,9 +168,21 @@ export function PremiumRecentThreats({ quarantine, scanHistory = [], onRefresh, 
           <h2 className="text-2xl font-bold text-gray-900 mb-1">Security Activity Log</h2>
           <p className="text-gray-600">Latest threat detections and scan activities</p>
         </div>
-        <Button variant="outline" size="sm" onClick={onRefresh}>
-          Refresh
-        </Button>
+        <div className="flex gap-2">
+          {scanHistory.length > 0 && onClearHistory && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onClearHistory}
+              className="text-red-600 border-red-200 hover:bg-red-50 hover:text-red-700 hover:border-red-300"
+            >
+              Clear History
+            </Button>
+          )}
+          <Button variant="outline" size="sm" onClick={onRefresh}>
+            Refresh
+          </Button>
+        </div>
       </div>
 
       <Tabs defaultValue="all" className="w-full">
@@ -227,7 +240,7 @@ export function PremiumRecentThreats({ quarantine, scanHistory = [], onRefresh, 
                           </Badge>
                         </div>
                         {item.results && (
-                          <div className="text-xs text-gray-600 space-y-1">
+                          <div className="text-xs text-gray-600 space-y-1 mt-2">
                             {item.results.path && <p>Path: {item.results.path}</p>}
                             {item.results.threats_found !== undefined && (
                               <p className={item.results.threats_found > 0 ? "text-red-600 font-bold" : "text-green-600"}>
@@ -237,6 +250,18 @@ export function PremiumRecentThreats({ quarantine, scanHistory = [], onRefresh, 
                             {item.results.security_score !== undefined && <p>Security Score: {item.results.security_score}/100</p>}
                             {item.results.connections_found !== undefined && <p>Connections Found: {item.results.connections_found}</p>}
                             {item.results.verdict && <p className={item.results.verdict === 'MALICIOUS' ? "text-red-600" : "text-green-600"}>Verdict: {item.results.verdict}</p>}
+                          </div>
+                        )}
+                        {item.resources && (
+                          <div className="flex gap-4 mt-3 pt-3 border-t border-gray-100">
+                            <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
+                              <Activity className="w-3.5 h-3.5 text-blue-500" />
+                              LightAV CPU: <span className="text-gray-900">{item.resources.cpu.toFixed(1)}%</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
+                              <Shield className="w-3.5 h-3.5 text-purple-500" />
+                              LightAV RAM: <span className="text-gray-900">{item.resources.ram.toFixed(1)}%</span>
+                            </div>
                           </div>
                         )}
                       </div>

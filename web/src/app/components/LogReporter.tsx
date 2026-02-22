@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/app/components/ui/card";
 import { ScrollArea } from "@/app/components/ui/scroll-area";
-import { Terminal, Clock, Shield, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { Terminal, Clock, Shield, AlertTriangle, CheckCircle2, RotateCcw } from "lucide-react";
+import { Button } from "@/app/components/ui/button";
 
 interface LogEntry {
     id: string;
@@ -14,6 +15,7 @@ interface LogEntry {
 export function LogReporter() {
     const [logs, setLogs] = useState<LogEntry[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isRefreshing, setIsRefreshing] = useState(false);
 
     const fetchLogs = async () => {
         try {
@@ -55,7 +57,13 @@ export function LogReporter() {
             console.error('Failed to fetch logs:', error);
         } finally {
             setIsLoading(false);
+            setIsRefreshing(false);
         }
+    };
+
+    const handleRefresh = async () => {
+        setIsRefreshing(true);
+        await fetchLogs();
     };
 
     useEffect(() => {
@@ -76,7 +84,17 @@ export function LogReporter() {
                         <p className="text-gray-600">Real-time monitoring and event history</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleRefresh}
+                        disabled={isRefreshing}
+                        className="gap-2 h-8"
+                    >
+                        <RotateCcw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
+                        Refresh
+                    </Button>
                     <div className="flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-medium border border-green-200">
                         <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
                         Live
