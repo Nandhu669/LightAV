@@ -81,6 +81,14 @@ export function AdvancedProtection({ protectionStatus, onToggleProtection }: Adv
       status: "excellent",
     },
     {
+      id: "usb",
+      title: "USB Protection",
+      description: "Scans removable drives for malicious content upon insertion",
+      icon: Lock, // Using Lock since there's no USB icon imported, or I should import it
+      enabled: true,
+      status: "excellent",
+    },
+    {
       id: "email",
       title: "Email Protection (Coming Soon)",
       description: "Detects threats in attachments and links",
@@ -88,6 +96,17 @@ export function AdvancedProtection({ protectionStatus, onToggleProtection }: Adv
       enabled: false,
     },
   ]);
+
+  useEffect(() => {
+    // Fetch initial statuses
+    fetch('/api/status/usb')
+      .then(res => res.json())
+      .then(data => {
+        setFeatures(prev => prev.map(f =>
+          f.id === 'usb' ? { ...f, enabled: data.running } : f
+        ));
+      });
+  }, []);
 
   useEffect(() => {
     setFeatures(prev => prev.map(f =>
@@ -98,6 +117,14 @@ export function AdvancedProtection({ protectionStatus, onToggleProtection }: Adv
   const toggleFeature = (id: string) => {
     if (id === "realtime") {
       onToggleProtection();
+    } else if (id === "usb") {
+      fetch('/api/toggle/usb', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          setFeatures(features.map(f =>
+            f.id === "usb" ? { ...f, enabled: data.running } : f
+          ));
+        });
     } else {
       setFeatures(features.map(f =>
         f.id === id ? { ...f, enabled: !f.enabled } : f

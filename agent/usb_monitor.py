@@ -1,36 +1,52 @@
 import win32com.client
 import time
 from agent.scanner import process_file
-from PyQt6.QtWidgets import QMessageBox
+from agent.runtime_state import USB_PROTECTION_ENABLED
 
-def monitor_usb(gui=None):
-    wmi = win32com.client.GetObject("winmgmts:")
-    watcher = wmi.ExecNotificationQuery(
-        "SELECT * FROM Win32_VolumeChangeEvent WHERE EventType = 2"
-    )
+def monitor_usb(callback_signal=None):
+    """
+    Monitors for USB insertion events.
+    If callback_signal is provided (PyQt signal), it emits the drive name.
+    """
+    # Initialize WMI in the current thread
+    import pythoncom
+    pythoncom.CoInitialize()
+    
+    try:
+        wmi = win32com.client.GetObject("winmgmts:")
+        watcher = wmi.ExecNotificationQuery(
+            "SELECT * FROM Win32_VolumeChangeEvent WHERE EventType = 2"
+        )
 
-    while True:
-        event = watcher.NextEvent()
-        drive = event.DriveName
-        if drive:
-            if gui:
-                reply = QMessageBox.question(
-                    gui,
-                    "USB Detected",
-                    f"USB device detected at {drive}\nDo you want to scan it?",
-                    QMessageBox.StandardButton.Yes |
-                    QMessageBox.StandardButton.No
-                )
-
-                if reply == QMessageBox.StandardButton.Yes:
-                    scan_usb(drive)
-
+        while True:
+            # Check every second for better responsiveness to stop signals
+            # nextEvent can block, so we use a shorter timeout if possible or just loop
+            event = watcher.NextEvent()
+            
+            if not USB_PROTECTION_ENABLED.is_set():
+                continue
+                
+            drive = event.DriveName
+            if drive:
+                print(f"[USB] Device detected at {drive}")
+                if callback_signal:
+                    callback_signal.emit(drive)
+                else:
+                    # Fallback for non-GUI usage if needed
+                    pass
+    except Exception as e:
+        print(f"[USB] Monitor Error: {e}")
+    finally:
+        pythoncom.CoUninitialize()
 
 def scan_usb(drive_path):
     import os
+    print(f"[USB] Starting scan of {drive_path}")
     for root, _, files in os.walk(drive_path):
         for f in files:
             try:
-                process_file(os.path.join(root, f))
+                filepath = os.path.join(root, f)
+                process_file(filepath)
             except:
                 pass
+    print(f"[USB] Scan of {drive_path} completed.")

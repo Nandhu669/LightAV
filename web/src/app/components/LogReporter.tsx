@@ -17,6 +17,21 @@ export function LogReporter() {
     const [isLoading, setIsLoading] = useState(true);
     const [isRefreshing, setIsRefreshing] = useState(false);
 
+    const handleDownload = async () => {
+        try {
+            const response = await fetch('/api/export_logs');
+            const data = await response.json();
+            if (data.success) {
+                alert(`Report saved to:\n${data.path}`);
+            } else {
+                alert(`Failed to export logs: ${data.error}`);
+            }
+        } catch (error) {
+            console.error("Download failed:", error);
+            alert("An error occurred while downloading the report.");
+        }
+    };
+
     const fetchLogs = async () => {
         try {
             const res = await fetch('/api/system_logs');
@@ -164,7 +179,12 @@ export function LogReporter() {
 
             <div className="mt-4 flex items-center justify-between text-xs text-gray-400 font-medium">
                 <p>Showing last {logs.length} events</p>
-                <button className="text-blue-600 hover:underline">Download Report</button>
+                <button
+                    onClick={handleDownload}
+                    className="text-blue-600 hover:underline"
+                >
+                    Download Report
+                </button>
             </div>
         </Card>
     );

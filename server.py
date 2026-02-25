@@ -4,14 +4,17 @@ Serves React UI and exposes REST endpoints
 """
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel
 import os
+import io
+import csv
+from datetime import datetime
 from pathlib import Path
 
 # LightAV backend imports
 from agent.scanner import process_file
-from agent.runtime_state import RUNNING
+from agent.runtime_state import RUNNING, USB_PROTECTION_ENABLED
 from agent.decision_types import Verdict
 from agent.network_scan import start_network_scan
 from agent.log_reader import read_last_lines
@@ -80,6 +83,60 @@ def get_system_logs():
             continue
     return {"logs": logs}
 
+@app.get("/api/export_logs")
+def export_logs():
+    from agent.log_reader import LOG_FILE
+    if not LOG_FILE.exists():
+        return {"success": False, "error": "No logs available"}
+    
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["Timestamp", "Module", "Event", "Status"])
+    
+    with open(LOG_FILE, "r", encoding="utf-8") as f:
+        for line in f:
+            try:
+                raw = json.loads(line)
+                status = "INFO"
+                event = ""
+                module = "System"
+
+                if raw.get("action") == "quarantine":
+                    status = "THREAT"
+                    event = f"Quarantined: {raw.get('original')}"
+                    module = "Shield"
+                elif raw.get("action") == "restore":
+                    status = "SUCCESS"
+                    event = f"Restored: {raw.get('to')}"
+                    module = "Recovery"
+                elif raw.get("verdict") is not None:
+                    status = "THREAT" if raw.get("verdict") == 1 else "SUCCESS"
+                    event = f"File Scan: {raw.get('file')} - {'Threat Blocked' if raw.get('verdict') == 1 else 'Clean'}"
+                    module = "HashDB" if raw.get("source") == "cache" else "Scanner"
+                
+                writer.writerow([raw.get("ts"), module, event, status])
+            except:
+                continue
+    
+    # Save to Downloads folder
+    downloads_path = os.path.join(os.path.expanduser("~"), "Downloads")
+    if not os.path.exists(downloads_path):
+        try:
+            os.makedirs(downloads_path)
+        except:
+            return {"success": False, "error": "Could not access Downloads folder"}
+            
+    filename = f"lightav_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    filepath = os.path.join(downloads_path, filename)
+    
+    try:
+        with open(filepath, "w", encoding="utf-8", newline='') as f:
+            f.write(output.getvalue())
+    except Exception as e:
+        return {"success": False, "error": f"Failed to save file: {str(e)}"}
+        
+    return {"success": True, "path": filepath}
+
 @app.post("/api/log")
 def log_ui_message(message: dict):
     print(f"[UI-CLIENT] {message.get('msg')}", flush=True)
@@ -92,6 +149,18 @@ def toggle_protection():
     else:
         RUNNING.set()
     return {"running": RUNNING.is_set()}
+
+@app.get("/api/status/usb")
+def get_usb_status():
+    return {"running": USB_PROTECTION_ENABLED.is_set()}
+
+@app.post("/api/toggle/usb")
+def toggle_usb_protection():
+    if USB_PROTECTION_ENABLED.is_set():
+        USB_PROTECTION_ENABLED.clear()
+    else:
+        USB_PROTECTION_ENABLED.set()
+    return {"running": USB_PROTECTION_ENABLED.is_set()}
 
 @app.get("/api/system_stats")
 def get_system_stats():
