@@ -260,7 +260,7 @@ export function PremiumRecentThreats({ quarantine, scanHistory = [], onRefresh, 
                             </div>
                             <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
                               <Shield className="w-3.5 h-3.5 text-purple-500" />
-                              LightAV RAM: <span className="text-gray-900">{item.resources.ram.toFixed(1)}%</span>
+                              LightAV RAM: <span className="text-gray-900">{item.resources.ram.toFixed(1)} MB</span>
                             </div>
                           </div>
                         )}

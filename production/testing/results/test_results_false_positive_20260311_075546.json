@@ -1,0 +1,1315 @@
+{
+  "suite_name": "false_positive",
+  "total_tests": 100,
+  "true_positives": 0,
+  "true_negatives": 100,
+  "false_positives": 0,
+  "false_negatives": 0,
+  "detection_rate": 0.0,
+  "false_positive_rate": 0.0,
+  "accuracy": 1.0,
+  "avg_scan_time_ms": 0.0,
+  "total_time_seconds": 0.25269198417663574,
+  "results": [
+    {
+      "file_path": "C:\\Windows\\System32\\07409496-a423-4a3e-b620-2cfb01a9318d_HyperV-ComputeNetwork.dll",
+      "file_hash": "5ec80c9ae82e241f89ab877ec6c804cdd4314ccf5009e51b5e1c061921965337",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.950340"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\0ae3b998-9a38-4b72-a4c4-06849441518d_Servicing-Stack.dll",
+      "file_hash": "44b843952aa806cc64445f82bb39295db512aacccab97c9b47ac97e0be25a0a7",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.952339"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\3bc29097-7317-41d3-93b9-38a48f99d48a_mssrch.dll",
+      "file_hash": "0fb9d9d7cf10103daf72db8ead9b217d6f15c79edf5ddd69d0d87fe5d9f4760f",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.953339"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\4545ffe2-0dc4-4df4-9d02-299ef204635e_hvsocket.dll",
+      "file_hash": "b71918e565fe3933d6152a3326bc28ab902f3939aabdedda9571ed2a1704e7d5",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.953339"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\69fe178f-26e7-43a9-aa7d-2b616b672dde_eventlogservice.dll",
+      "file_hash": "942bfaecad68670deb8d31f7eab9cd0325d53e9332678ea99422daa4625c30d1",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.954340"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\6bea57fb-8dfb-4177-9ae8-42e8b3529933_RuntimeDeviceInstall.dll",
+      "file_hash": "b234a8270b0c3a38556e4ef1dfcbc0cf0e23cfc2809cc262c1bf9cdf8c9ec478",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.955340"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aadauthhelper.dll",
+      "file_hash": "06d066e79a771a8ae3186e887317c79e6949b5bc20c6663926261fb2e05ff366",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.956582"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aadcloudap.dll",
+      "file_hash": "b9200c4a82485887db408513af7af6a2025e119d53c39fda3bddb61cc734719c",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.959099"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aadjcsp.dll",
+      "file_hash": "eefa17aed3e0f866b1a171a87ddb0634bca490709da8b9afdc056644322f13b7",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.960100"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aadtb.dll",
+      "file_hash": "687b1561cf099ccadf71c96cc75d6f0afdf0e81d7dde40670375bc6a485ad369",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.963098"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aadWamExtension.dll",
+      "file_hash": "44891e8f96d847ccc2c2bb8c9a01cfd27fd6ba47afec41a858487b97e2e0a2de",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.965908"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AarSvc.dll",
+      "file_hash": "51ca158ab8bd580349b012e13edc0b44ce50efa027897c642c4029a7ab570a92",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.967908"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AboutSettingsHandlers.dll",
+      "file_hash": "8c6f9e9e58bc9031e6dbfe02549c9fe629b8c5f220c42df1ae700ca167d6b2d3",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.969905"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AboveLockAppHost.dll",
+      "file_hash": "88ad496ab38fadbfe05e6e6584d704d01f0f07b6861eb582d61f502072fb383d",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.970905"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\accessibilitycpl.dll",
+      "file_hash": "890cc718cfae3f755692bab9466b07d0a9cba755db5bc51d63074add4ffc196d",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.971908"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\accountaccessor.dll",
+      "file_hash": "c3836eb6952497da4734914c30cc3325eed85705717e92d8800e43be5874513d",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.973414"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AccountHealth.dll",
+      "file_hash": "a2ed75382b9e120d661a6c75dd4876740e97c5b42bd926cc136b11b4a8d3c5f4",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.974420"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AccountsRt.dll",
+      "file_hash": "c21bdbac208a3e0db8345839ccef85c37a5fa6c3ad4af931c13cb15d4c09df98",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.976832"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AcGenral.dll",
+      "file_hash": "584e972c577918013ccf0982e7874a1dba9e425b6968f777a87ea08235c6d4f3",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.978021"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AcLayers.dll",
+      "file_hash": "1cfa8b80f23821dfd7bc26820dcaa70c98189b1198e4ee34228fae9882df2a94",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.980445"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\acledit.dll",
+      "file_hash": "5c49d7bad0a28967a4f39b76a3f554370beff5e5534483fdcecb2568ece76ab0",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.990520"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aclui.dll",
+      "file_hash": "1221cd8f47133a7232570c300cf04a756b8410a543f4a48ee2bc98284cfb7cc8",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.992054"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\acmigration.dll",
+      "file_hash": "3741dd8e56e036fb5de25feca06a964f850304a74fe2184f84b7933580a9a2ad",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.992640"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ACPBackgroundManagerPolicy.dll",
+      "file_hash": "e910766fbb256d2ba2d54168b964b6cf7cdc13ee5ff9767f10ed6de651f34c1d",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.994651"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\acppage.dll",
+      "file_hash": "4070ae528dc28d2d13eff3cff3f7c81b808911a29c73fd6341de7cdcb7607015",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.996071"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\acproxy.dll",
+      "file_hash": "eaba99f4fc722276267f3e36b7ce6f906340ce2ec70ecd061a3e3b795ad8ca77",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.997078"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AcSpecfc.dll",
+      "file_hash": "6ef7657fd4a2c973d0fa2cf6d990b7e5f034fa32d9b77ac2c0f4166042726846",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:45.999130"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ActionCenter.dll",
+      "file_hash": "f794a046c1787f660da9bb6ced4bc6a674566971d1058ce8028acdadf4167fe1",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.001138"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ActionCenterCPL.dll",
+      "file_hash": "946bfd9f6c89d9326e013e52e8d50290fd69b8477e19deab8757dc017821a80b",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.003144"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ActionQueue.dll",
+      "file_hash": "132ddf7d96a9afbe77e75486d3294e07945028058339bc4b367483450e112ef6",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.004648"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ActivationClient.dll",
+      "file_hash": "85d1adb14fe8260512e687547c22e1239c38357de1f76d025c5f81b7ee62be91",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.006622"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ActivationManager.dll",
+      "file_hash": "53a04603c338f7e428b5aeec82b2d9460ede5f5d581ce47cacd64d826a02ff20",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.008129"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\activeds.dll",
+      "file_hash": "907d2b60cc59eff485d40cce41b372cf706a89ea5cd66fd2565314485a3de122",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.010900"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ActiveSyncCsp.dll",
+      "file_hash": "6b4e7df8db6af85f45b998a3a70979035efb63e9a39ec6007ed5aa992a20b907",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.010900"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ActiveSyncProvider.dll",
+      "file_hash": "0814ddd7aeae0db57c4ca1933fa511f3eef6e07fcb3d2375e929a701799c73ba",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.016930"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\actxprxy.dll",
+      "file_hash": "a7d9847b605fbb33533d40fe9fe30ee9c1f735c490696fdf68f3b11afcb2cf39",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.018936"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AcWinRT.dll",
+      "file_hash": "9c9dad562f374bf502c6e2126790acc309d824bd148f0ef83cf78441e57c765e",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.018936"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AcXtrnal.dll",
+      "file_hash": "18a667df6ad0e53f846e51cdb484186557fdacbec87d63be48bfe4f39b97d570",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.020943"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AdaptiveCards.dll",
+      "file_hash": "430484398013c9e31f1f62326f483a6cd5823a44c7f219e6d6fb3ba3d0f29195",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.020943"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AddressParser.dll",
+      "file_hash": "9a0ef17293ec6e86ef83cac6a940edf24d3c2309cf57fc23380ca405aafaf2a2",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.023451"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\adhapi.dll",
+      "file_hash": "0908f0a5b0982e81ad6b051492f5d8eecf81fbec542fc41c115c9625964323b5",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.024356"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\adhsvc.dll",
+      "file_hash": "830955f41d38ed9da55e92bacd1a92dfa8f19aca8c542c1d54c5ebb9bcd1421a",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.025901"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\adprovider.dll",
+      "file_hash": "c958114646f9a4dd2b8cf16833f4cb18a5622a37a57747821dd8a00465824a3f",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.026908"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\adpsvc.dll",
+      "file_hash": "8879dde1f5a148e3bce4b8bc63ed0cb2e2cc522225a44e754991fd3d845eacae",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.028905"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\adsldp.dll",
+      "file_hash": "7fffb04ed308a87616b85ba6afa9168da6bd8cf6bf62f66e67d839e3f84a8008",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.028905"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\adsldpc.dll",
+      "file_hash": "9e0b78d5f9b5f6236deb3c67828638cfc4f19b4e1c617a7ce4cb461812ec18a3",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.031705"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\adsmsext.dll",
+      "file_hash": "8c8e0cf2b88edcf1e3dc7ea14dada217a73b9174ed4a59b374a204ed9455a83c",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.036035"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\adsnt.dll",
+      "file_hash": "5bd63f3600b2c2be179c0f1231e39e47324a0523309ed9b4fb5315ed0d28cae0",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.037815"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\adtschema.dll",
+      "file_hash": "b6c9ee6bbb8b657c8cd24f906f366286b825a78fbef8cdeda1aea75243dc20d4",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.040860"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AdvancedEmojiDS.dll",
+      "file_hash": "7b413145bfd34ea73d83933068dfb0c59646f43d87a1bfa464db0d444c11de5d",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.041867"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\advapi32.dll",
+      "file_hash": "8acd033ac8d4a77b1803b50556fb3f7e177a74cf3cb514871d57ee0f4005cfb8",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.043375"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\advapi32res.dll",
+      "file_hash": "65b59b881905f21378fac8761a60fd2cc313c2b509e22f65ee7531204428a2e8",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.043375"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\advpack.dll",
+      "file_hash": "72bccd045490e35bf6695cb1e5d32aed8b3cd3d43e63764d0944089728dede2e",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.045369"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aeevts.dll",
+      "file_hash": "8d566af923fa6506a04ba139a06826d7ea58671d541b8b6715150f151e88cf5b",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.046344"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aeinv.dll",
+      "file_hash": "f006c7c84b4feee612cce84bec43f84bb1323ddc6433b06d035487d4f117ad19",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.050285"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aemarebackup.dll",
+      "file_hash": "454c744bf2418940b30d43a683707bd762b30241f6e69f5a6819ee02beb6be00",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.052300"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aepic.dll",
+      "file_hash": "e071004e5187314c182c87c1d72b858103efdb36832ec0e903b3b086b92b2f41",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.057861"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\agentactivationruntime.dll",
+      "file_hash": "04ecd6735ec8b37fac03f5142c60cb6d6eed49ce74c27270236140e4797934ad",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.062901"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\agentactivationruntimestarter.exe",
+      "file_hash": "be21cc87cd36ef8b88d738cd227270c0355ba93e2e4eff72e9fbf1d5c50de348",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.097036"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\agentactivationruntimewindows.dll",
+      "file_hash": "4815903caec298567e45643ebc0d7e8953c847fb711fa437d648e0243bc48bd5",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.099576"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AggregatorHost.exe",
+      "file_hash": "7af5f1428c77e615c285f5b784592fdf2cb764d3334eefe4e84cb3b99405a0e8",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.103598"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aidd.dll",
+      "file_hash": "6d1090c82306d4184a3a0a3de389835778b7feac36ecfdb852546d0e46f5f9bd",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.106652"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\aitstatic.exe",
+      "file_hash": "ec7a1951a18baff6841b2ff7d448600b102e1c3158b215a19dab4f880503b99e",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.118571"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\alg.exe",
+      "file_hash": "1375ff19f5b3063742d5b3d43c238782360aaed9fee65445175e529d62d60ff8",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.120594"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\amsi.dll",
+      "file_hash": "9df7ad9e6826ab76294a91bef274696ee13d18a8cebabcd5c4c352a3d1141df3",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.122601"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\amsiproxy.dll",
+      "file_hash": "d0df6e77b91147e7c682f59413c99fad8d05254b5bfb4321e43968f75a26b774",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.123608"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\amstream.dll",
+      "file_hash": "5b73013cd4100e79f2916ec0cfbeb660e91a3d8023ac6743b4c617bd9c070c0d",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.123608"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\apds.dll",
+      "file_hash": "7279d246a00ce9ffed052a0938cd87495f8b84a15827a3a78051df7d1971f411",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.126157"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\APHostClient.dll",
+      "file_hash": "6c7861b431425eba833e21addb0c0b92ba22d8b8a24b9d9cf5359ccfc36341fb",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.127166"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\APHostRes.dll",
+      "file_hash": "4ba912c1f53d06ebe89929ab7f8f06c371c979017d2bf743f7e2acd2cdc4327c",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.127903"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\APHostService.dll",
+      "file_hash": "77daafabd58e0e5e80da19ed42ab5f1efe4dc3ce89f263d0e977cf581c09543c",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.129596"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\apisampling.dll",
+      "file_hash": "9829386eb02c08e06dbd6ce44eee42bb0f16a8707f59fb3f836e35bd53637cca",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.131620"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ApiSetHost.AppExecutionAlias.dll",
+      "file_hash": "c3934b7b389d120dd3e72264161de04754e6d8dd95cd3b25a320d4efe7431b5e",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.133631"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\apisetschema.dll",
+      "file_hash": "62653bdf0dff262c7e0e3eef9acf632e66fbb3733fc2199d1bd7110b5221aa90",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.135645"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\APMon.dll",
+      "file_hash": "ed2e25234e3e87328b5d155ed8cb730c0d8d8d136af210fecc7604dc2d375fce",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.139437"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\APMonUI.dll",
+      "file_hash": "e4bbd9623bc9b9474f22ce9403ba825c02f44c246e54be39d3fff6ffb7ecbb61",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.140943"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AppContracts.dll",
+      "file_hash": "ee3937d500cf7cb7fbd56b53dcb02123f65338c492f21f31bdace62d7549c29f",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.143392"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AppExtension.dll",
+      "file_hash": "42fed946532ee5b124c0991852c66e07e0ecdca61c907828d2e66765c1b8f874",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.144631"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\appfootprint.dll",
+      "file_hash": "41af253dc08cd877b823b6a4e981618453f672ed31a7e880aaa003d8770861eb",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.146907"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\apphelp.dll",
+      "file_hash": "d1d0617f4f790ed9b2f819dcfc9d04a470b97d89b1ceb85a8259a78b0475206d",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.147914"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\Apphlpdm.dll",
+      "file_hash": "da6416dec3454d954ec7d21101261fafc7b34b8027ee93dd9489dbea8b2b2687",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.150163"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AppHostRegistrationVerifier.exe",
+      "file_hash": "2da3f58d26ff34d4455399260f1d44acf1c967882100bb285d172762d472a049",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.152174"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\appidapi.dll",
+      "file_hash": "74e51955f577c24a3c84e46f163e94c9061f2fc6d568eafd4d11b998aec71efc",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.152174"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\appidcertstorecheck.exe",
+      "file_hash": "442a6a8546b9b2ee4159760b04e8fd33e6f3310c92c66709c27afa47c8653808",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.154186"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\appidpolicyconverter.exe",
+      "file_hash": "6ddf58b70300a3ac7a20493c1ab2a728967fb7ace55c1d1c68a75e4765e46d78",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.154696"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\appidsvc.dll",
+      "file_hash": "c438ef4443b523a865e451ac33df7cbcd0baa33387aaf0a55b613db6c16f57bd",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.156319"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\appidtel.exe",
+      "file_hash": "7de43a4c39305f1f3aad41e27b5144e338bb4675315bf6048362f96f8248c515",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.157374"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\appinfo.dll",
+      "file_hash": "e8ca73c40085f6801c9e3351a5077ff30440fb874b35f961b76bdbae8cf15492",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.159029"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\appinfoext.dll",
+      "file_hash": "f3052c925c68d2cd6ea92ce6261bb7dc5448c32c7dc38c9a54bba7aafcbe4420",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.159029"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AppInstallerBackgroundUpdate.exe",
+      "file_hash": "240311e1b41e67adb119d14a28f1c9019313f6d98492ed9bf7c81465ac4ba5b2",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.159029"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AppInstallerPrompt.Desktop.dll",
+      "file_hash": "102931e402de4aa0891b0cae528647bad508fc0214da18b358c7864cefd7d3d2",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.161047"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ApplicationControlCSP.dll",
+      "file_hash": "22de17913fa7f499a62ebb77bfed498d286fe7b0d1a1323e78f41b90a6db6944",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.163053"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ApplicationFrame.dll",
+      "file_hash": "ce3523dcfdbe417937ce98b3fd21c78498d018d756099bb76553afe05e0948e2",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.164639"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ApplicationFrameHost.exe",
+      "file_hash": "71e9e013b724c0ea6b2d7d91151fd87ebc1179a0254d671c66415fe066b60907",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.166819"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ApplicationTargetedFeatureDatabase.dll",
+      "file_hash": "c928ce9d6d6166698daf14ea1b4cf7bdede642863a56bb1728b9e5b464927716",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.168832"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AppListBackupLauncher.dll",
+      "file_hash": "5aca225f11e6c3ad4d6aa77281355459aecb3a9a5a3b9c4487f235206cea522a",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.168832"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AppLockerCSP.dll",
+      "file_hash": "f55adb66fcbc7663bf9d0cdb0fea6b00a8f7b3a11a8e151724b9e0dc14814bb5",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.168832"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\ApplyTrustOffline.exe",
+      "file_hash": "4f7cdccf0073d26904302db2f7ca63db0111d50dfdd6b03abcc3cace7a49eac0",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.173365"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AppMon.dll",
+      "file_hash": "65882efa5a17a073e1fd1649b293c9c38546db55e2960a2aa27dbc0dcd214358",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.175379"
+    },
+    {
+      "file_path": "C:\\Windows\\System32\\AppointmentActivation.dll",
+      "file_hash": "94d1f01c6e7ffe8dbc99e374748b30fb4672b85e86eade163d5d84b5861eb447",
+      "expected_verdict": "BENIGN",
+      "actual_verdict": "BENIGN",
+      "source": "deferred",
+      "confidence": 1.0,
+      "scan_time_ms": 0.0,
+      "details": {
+        "reason": "memory_limit"
+      },
+      "timestamp": "2026-03-11T07:55:46.175888"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { Shield, Globe, Download, FileWarning, Wifi, Eye, Lock, Mail } from "lucide-react";
+import { Shield, Globe, Wifi, Eye, Lock, Mail } from "lucide-react";
 import { Card } from "@/app/components/ui/card";
 import { Switch } from "@/app/components/ui/switch";
 import { Label } from "@/app/components/ui/label";
@@ -40,23 +40,6 @@ export function AdvancedProtection({ protectionStatus, onToggleProtection }: Adv
       status: "excellent",
     },
     {
-      id: "download",
-      title: "Download Protection",
-      description: "Automatically scans all downloaded files",
-      icon: Download,
-      enabled: true,
-      status: "good",
-    },
-    {
-      id: "ransomware",
-      title: "Ransomware Shield",
-      description: "Advanced protection against ransomware attacks",
-      icon: FileWarning,
-      enabled: true,
-      premium: true,
-      status: "excellent",
-    },
-    {
       id: "network",
       title: "Network Protection",
       description: "Monitors network traffic for suspicious activity",
@@ -66,11 +49,12 @@ export function AdvancedProtection({ protectionStatus, onToggleProtection }: Adv
     },
     {
       id: "privacy",
-      title: "Privacy Guard (Coming Soon)",
+      title: "Privacy Guard",
       description: "Protects your personal data and prevents tracking",
       icon: Eye,
       enabled: false,
       premium: true,
+      status: "good",
     },
     {
       id: "firewall",
@@ -90,22 +74,34 @@ export function AdvancedProtection({ protectionStatus, onToggleProtection }: Adv
     },
     {
       id: "email",
-      title: "Email Protection (Coming Soon)",
+      title: "Email Protection",
       description: "Detects threats in attachments and links",
       icon: Mail,
       enabled: false,
+      status: "good"
     },
   ]);
 
   useEffect(() => {
     // Fetch initial statuses
-    fetch('/api/status/usb')
-      .then(res => res.json())
-      .then(data => {
-        setFeatures(prev => prev.map(f =>
-          f.id === 'usb' ? { ...f, enabled: data.running } : f
-        ));
-      });
+    Promise.all([
+      fetch('/api/status/usb').then(res => res.json()),
+      fetch('/api/status/web').then(res => res.json()),
+      fetch('/api/status/firewall').then(res => res.json()),
+      fetch('/api/status/network').then(res => res.json()),
+      fetch('/api/status/privacy').then(res => res.json()),
+      fetch('/api/status/email').then(res => res.json())
+    ]).then(([usbData, webData, firewallData, networkData, privacyData, emailData]) => {
+      setFeatures(prev => prev.map(f => {
+        if (f.id === 'usb') return { ...f, enabled: usbData.running };
+        if (f.id === 'web') return { ...f, enabled: webData.running };
+        if (f.id === 'firewall') return { ...f, enabled: firewallData.running };
+        if (f.id === 'network') return { ...f, enabled: networkData.running };
+        if (f.id === 'privacy') return { ...f, enabled: privacyData.running };
+        if (f.id === 'email') return { ...f, enabled: emailData.running };
+        return f;
+      }));
+    }).catch(err => console.error(err));
   }, []);
 
   useEffect(() => {
@@ -117,12 +113,12 @@ export function AdvancedProtection({ protectionStatus, onToggleProtection }: Adv
   const toggleFeature = (id: string) => {
     if (id === "realtime") {
       onToggleProtection();
-    } else if (id === "usb") {
-      fetch('/api/toggle/usb', { method: 'POST' })
+    } else if (["usb", "web", "firewall", "network", "privacy", "email"].includes(id)) {
+      fetch(`/api/toggle/${id}`, { method: 'POST' })
         .then(res => res.json())
         .then(data => {
           setFeatures(features.map(f =>
-            f.id === "usb" ? { ...f, enabled: data.running } : f
+            f.id === id ? { ...f, enabled: data.running } : f
           ));
         });
     } else {

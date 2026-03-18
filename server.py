@@ -14,10 +14,16 @@ from pathlib import Path
 
 # LightAV backend imports
 from agent.scanner import process_file
-from agent.runtime_state import RUNNING, USB_PROTECTION_ENABLED
+from agent.runtime_state import RUNNING, USB_PROTECTION_ENABLED, WEB_PROTECTION_ENABLED, FIREWALL_ENABLED, NETWORK_PROTECTION_ENABLED, PRIVACY_GUARD_ENABLED, EMAIL_PROTECTION_ENABLED
 from agent.decision_types import Verdict
 from agent.network_scan import start_network_scan
 from agent.log_reader import read_last_lines
+from agent.web_protection import enable_web_protection, disable_web_protection
+from agent.firewall import toggle_firewall_rule
+from agent.network_protection import start_network_monitor
+from agent.privacy_guard import toggle_privacy_guard
+from agent.email_protection import start_email_monitor
+from agent.vulnerability_scan import start_vulnerability_scan
 import json
 from datetime import datetime
 import psutil
@@ -28,10 +34,10 @@ cpu_count = psutil.cpu_count() or 1
 total_ram = psutil.virtual_memory().total
 
 def get_process_resources():
-    # Return process-specific resources: CPU % and RAM % (both 0-100 scale)
+    # Return process-specific resources: CPU % and RAM (in MB)
     return {
         "cpu": current_process.cpu_percent() / cpu_count,
-        "ram": (current_process.memory_info().rss / total_ram) * 100
+        "ram": current_process.memory_info().rss / (1024 * 1024)
     }
 
 def add_to_history(scan_type, results, status="Completed", resources=None):
@@ -59,6 +65,10 @@ def add_to_history(scan_type, results, status="Completed", resources=None):
         json.dump(history, f, indent=2)
 
 app = FastAPI()
+
+# Start background security monitors automatically when the server spins up
+start_network_monitor(NETWORK_PROTECTION_ENABLED)
+start_email_monitor(EMAIL_PROTECTION_ENABLED)
 
 # Request models
 class ScanRequest(BaseModel):
@@ -161,6 +171,76 @@ def toggle_usb_protection():
     else:
         USB_PROTECTION_ENABLED.set()
     return {"running": USB_PROTECTION_ENABLED.is_set()}
+
+@app.get("/api/status/web")
+def get_web_status():
+    return {"running": WEB_PROTECTION_ENABLED.is_set()}
+
+@app.post("/api/toggle/web")
+def toggle_web_protection():
+    if WEB_PROTECTION_ENABLED.is_set():
+        # User turned it off
+        disable_web_protection()
+        WEB_PROTECTION_ENABLED.clear()
+    else:
+        # User turned it on
+        success = enable_web_protection()
+        # Even if not admin, we toggle state to keep UI working, or we can restrict it.
+        # Let's toggle it anyway so they see the button turn blue.
+        WEB_PROTECTION_ENABLED.set()
+    return {"running": WEB_PROTECTION_ENABLED.is_set()}
+
+@app.get("/api/status/firewall")
+def get_firewall_status():
+    return {"running": FIREWALL_ENABLED.is_set()}
+
+@app.post("/api/toggle/firewall")
+def toggle_firewall():
+    if FIREWALL_ENABLED.is_set():
+        toggle_firewall_rule(False)
+        FIREWALL_ENABLED.clear()
+    else:
+        toggle_firewall_rule(True)
+        FIREWALL_ENABLED.set()
+    return {"running": FIREWALL_ENABLED.is_set()}
+
+@app.get("/api/status/network")
+def get_network_status():
+    return {"running": NETWORK_PROTECTION_ENABLED.is_set()}
+
+@app.post("/api/toggle/network")
+def toggle_network():
+    if NETWORK_PROTECTION_ENABLED.is_set():
+        NETWORK_PROTECTION_ENABLED.clear()
+    else:
+        NETWORK_PROTECTION_ENABLED.set()
+    return {"running": NETWORK_PROTECTION_ENABLED.is_set()}
+
+@app.get("/api/status/privacy")
+def get_privacy_status():
+    return {"running": PRIVACY_GUARD_ENABLED.is_set()}
+
+@app.post("/api/toggle/privacy")
+def toggle_privacy():
+    if PRIVACY_GUARD_ENABLED.is_set():
+        toggle_privacy_guard(False)
+        PRIVACY_GUARD_ENABLED.clear()
+    else:
+        toggle_privacy_guard(True)
+        PRIVACY_GUARD_ENABLED.set()
+    return {"running": PRIVACY_GUARD_ENABLED.is_set()}
+
+@app.get("/api/status/email")
+def get_email_status():
+    return {"running": EMAIL_PROTECTION_ENABLED.is_set()}
+
+@app.post("/api/toggle/email")
+def toggle_email():
+    if EMAIL_PROTECTION_ENABLED.is_set():
+        EMAIL_PROTECTION_ENABLED.clear()
+    else:
+        EMAIL_PROTECTION_ENABLED.set()
+    return {"running": EMAIL_PROTECTION_ENABLED.is_set()}
 
 @app.get("/api/system_stats")
 def get_system_stats():
@@ -318,17 +398,25 @@ def run_background_full_scan(job_id):
                     rel_path = os.path.relpath(os.path.join(root, file), drive)
                     scan_jobs[job_id]["last_file"] = rel_path
                     
-                    # Check CPU usage every 50 files
-                    if files_count % 50 == 0:
-                        cpu_usage = psutil.cpu_percent(interval=None)
-                        if cpu_usage > 60:
-                            print(f"[API] CPU usage too high ({cpu_usage}%). Halting scan job {job_id}")
-                            scan_jobs[job_id]["status"] = "halted"
-                            scan_jobs[job_id]["message"] = f"Scan halted due to high CPU usage ({cpu_usage}%)."
-                            break
-
-                    # CPU Throttling
-                    time.sleep(0.01)
+                    # Adaptive CPU throttle — never halts, just slows down
+                    if files_count % 10 == 0:
+                        sys_cpu = psutil.cpu_percent(interval=None)
+                        if sys_cpu > 85:
+                            # System is very busy — pause for 2 seconds
+                            scan_jobs[job_id]["message"] = f"Pausing — system CPU at {sys_cpu:.0f}%"
+                            time.sleep(2.0)
+                        elif sys_cpu > 70:
+                            # System is busy — slow down significantly
+                            scan_jobs[job_id]["message"] = f"Throttling — system CPU at {sys_cpu:.0f}%"
+                            time.sleep(0.5)
+                        elif sys_cpu > 50:
+                            # Moderate load — gentle back off
+                            scan_jobs[job_id]["message"] = ""
+                            time.sleep(0.1)
+                        else:
+                            # System mostly idle — scan at full speed
+                            scan_jobs[job_id]["message"] = ""
+                            time.sleep(0.02)
 
                     filepath = os.path.join(root, file)
                     try:
@@ -345,17 +433,13 @@ def run_background_full_scan(job_id):
             scan_jobs[job_id]["status"] = "completed"
             scan_jobs[job_id]["scanned_paths"] = scanned_paths
             scan_jobs[job_id]["threats"] = results
+            scan_jobs[job_id]["message"] = ""
             
             add_to_history("Full System Scan", {
                 "drives": scanned_paths,
                 "threats_found": len(results),
                 "threats": results
             }, resources=resources)
-        elif scan_jobs[job_id]["status"] == "halted":
-            add_to_history("Full System Scan", {
-                "threats_found": len(results),
-                "message": scan_jobs[job_id].get("message", "Halted")
-            }, status="Halted", resources=resources)
             
     except Exception as e:
         print(f"[API] Error during background scan {job_id}: {e}")

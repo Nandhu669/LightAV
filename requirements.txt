@@ -1,15 +1,18 @@
 # LightAV Requirements
 # Python 3.10.x compatible pinned dependencies
-# Updated: 2026-02-04
+# Updated: 2026-03-11 (Phase 5 Completion)
 
 # --- Core Data Science ---
 numpy==1.26.4
 pandas==2.3.3
 scikit-learn==1.7.2
 
-# --- ML Model ---
+# --- ML Model & Conversion ---
 lightgbm==4.1.0
 onnxruntime==1.23.2
+onnxmltools==1.12.0
+skl2onnx==1.16.0
+joblib==1.3.2
 
 # --- System Monitoring ---
 watchdog==3.0.0
@@ -31,6 +34,9 @@ pybloom-live==4.0.0
 tqdm==4.66.1
 requests==2.31.0
 
+# --- Reporting ---
+fpdf2==2.7.8
+
 # --- Phase 2: Resource Management & Service ---
 # Windows service support (optional - requires Windows)
 pywin32==306; platform_system=="Windows"
@@ -39,5 +45,3 @@ winshell==0.6; platform_system=="Windows"
 # Additional utilities
 click==8.1.7
 colorama==0.4.6
-
-
