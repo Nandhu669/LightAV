@@ -50,7 +50,7 @@ Examples:
         args.gui = True
     
     if args.scan:
-        from agent.scanner import process_file
+        from core.scanner import scan_file as process_file
         import os
         
         target = args.scan
@@ -71,12 +71,12 @@ Examples:
             sys.exit(1)
     
     elif args.agent:
-        from agent.main_agent import main_loop
+        from services.main_agent import main_loop
         print("[LightAV] Starting background agent...")
         main_loop()
     
     elif args.gui:
-        from gui.app import main
+        from ui.app import main
         print("[LightAV] Launching GUI...")
         main()
 

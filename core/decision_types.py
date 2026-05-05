@@ -1,0 +1,6 @@
+from enum import IntEnum
+
+class Verdict(IntEnum):
+    BENIGN = 0
+    MALICIOUS = 1
+    SUSPICIOUS = 2

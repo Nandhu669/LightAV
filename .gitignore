@@ -66,8 +66,8 @@ hash_cache.db
 .DS_Store
 Thumbs.db
 
-# Data files (training/test data)
-data/
+# Data directory structure (Keep rules and logic, ignore weights)
+# data/ is now part of core architecture
 
 # Installer builds
 installer/
@@ -79,3 +79,12 @@ verify_env.py
 # Quarantine directory contents (keep structure, exclude files)
 quarantine/files/*
 !quarantine/files/.gitkeep
+
+# Graphify
+graphify-out/
+run_ast.py
+run_build.py
+run_cleanup.py
+run_detect.py
+run_merge.py
+generate_labels.py

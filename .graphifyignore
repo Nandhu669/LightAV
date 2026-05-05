@@ -1,0 +1,50 @@
+# .graphifyignore
+# LightAV Project
+
+# Ignore everything first
+*
+
+# Explicitly include root files
+!*.py
+!*.md
+!*.txt
+!*.yaml
+!*.json
+
+# Explicitly include source directories
+!agent/
+!agent/**
+!ai_engine/
+!ai_engine/**
+!docs/
+!docs/**
+!gui/
+!gui/**
+!installer/
+!installer/**
+!service/
+!service/**
+!tests/
+!tests/**
+!tools/
+!tools/**
+!web/
+!web/**
+
+# Re-ignore virtual environments, build artifacts, cache, and large data
+.venv/
+__pycache__/
+logs/
+data/
+results/
+quarantine/
+ml_models/
+*.pkl
+*.db
+*.sqlite
+*.sqlite3
+*.docx
+*.onnx
+.git/
+.vscode/
+.agents/
